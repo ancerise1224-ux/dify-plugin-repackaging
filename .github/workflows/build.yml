@@ -44,6 +44,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
+      - name: Install pip
+        run: python -m pip install --upgrade pip setuptools wheel
+
       - name: Set up Python 3.12
         uses: actions/setup-python@v6
         with:
