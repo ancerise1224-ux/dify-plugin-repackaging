@@ -55,7 +55,7 @@ jobs:
           
       - name: Run plugin repackaging script
         run: |        
-          PIP_MIRROR_URL=https://repo.huaweicloud.com/repository/pypi/simple/
+          PIP_MIRROR_URL=https://pypi.org/simple \
           ./plugin_repackaging.sh \
           -p ${{ env.PIP_PLATFORM }} \
           -s ${{ env.PACKAGE_SUFFIX }} \
@@ -63,7 +63,6 @@ jobs:
           "${{ github.event.inputs.plugin_author }}" \
           "${{ github.event.inputs.plugin_name }}" \
           "${{ github.event.inputs.plugin_version }}"
-          sed -i 's/greenlet==3.4.0/greenlet==3.2.5/g' */requirements.txt    
 
       - name: Find repackaged artifact
         run: |
