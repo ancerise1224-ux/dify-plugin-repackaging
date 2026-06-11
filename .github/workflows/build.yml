@@ -49,10 +49,6 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install greenlet
-        run: |
-          python -m pip install -U pip
-          pip install greenlet==3.4.0 -i https://pypi.org/simple
 
 
       - name: Make plugin_repackaging.sh executable
@@ -61,6 +57,9 @@ jobs:
 
       - name: Run plugin repackaging script
         run: |
+          python -m pip install -U pip
+          pip install greenlet==3.4.0 -i https://pypi.org/simple
+        
           PIP_MIRROR_URL=https://mirrors.cloud.tencent.com/pypi/simple/ \
           ./plugin_repackaging.sh \
           -p ${{ env.PIP_PLATFORM }} \
