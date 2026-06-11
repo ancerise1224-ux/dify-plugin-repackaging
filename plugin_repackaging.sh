@@ -334,7 +334,8 @@ PY
 	
 	# pandas
 	sed -i 's/pandas.*/pandas~=2.3.2/g' requirements.txt
-	
+
+	sed -i 's/PyMuPDF.*/PyMuPDF~=1.26.0/g' requirements.txt
 	cat requirements.txt
 
 	# ============================================
