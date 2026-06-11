@@ -319,7 +319,14 @@ PY
 		echo "✓ Using existing requirements.txt"
 	fi
 
+
+
 	[ ! -f "requirements.txt" ] && echo "✗ Error: requirements.txt not found" && exit 1
+
+	
+	# Patch problematic dependencies
+	echo "Patching requirements.txt..."
+	sed -i 's/greenlet==3.4.0/greenlet==3.2.5/g' requirements.txt
 
 	# ============================================
 	# Step 3: Download Python dependencies as wheels
