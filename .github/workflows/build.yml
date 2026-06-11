@@ -49,18 +49,18 @@ jobs:
         with:
           python-version: "3.12"
 
-
+      - name: Downgrade pip
+        run: |
+          python -m pip install pip==25.2
+          pip --version
 
       - name: Make plugin_repackaging.sh executable
         run: chmod +x ./plugin_repackaging.sh
 
 
       - name: Run plugin repackaging script
-        run: |
-          python -m pip install -U pip
-          pip install greenlet==3.4.0 -i https://pypi.org/simple
-        
-          PIP_MIRROR_URL=https://mirrors.cloud.tencent.com/pypi/simple/ \
+        run: |        
+          PIP_MIRROR_URL=https://pypi.org/simple \
           ./plugin_repackaging.sh \
           -p ${{ env.PIP_PLATFORM }} \
           -s ${{ env.PACKAGE_SUFFIX }} \
