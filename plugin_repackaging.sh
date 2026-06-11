@@ -333,7 +333,9 @@ PY
 	sed -i 's/greenlet==3.4.0/greenlet==3.2.5/g' requirements.txt
 	
 	# pandas
-	sed -i 's/pandas~=3.0.1/pandas~=2.3.2/g' requirements.txt
+	sed -i 's/pandas.*/pandas~=2.3.2/g' requirements.txt
+	
+	cat requirements.txt
 
 	# ============================================
 	# Step 3: Download Python dependencies as wheels
