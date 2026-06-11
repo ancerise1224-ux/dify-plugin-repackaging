@@ -63,6 +63,7 @@ jobs:
           "${{ github.event.inputs.plugin_author }}" \
           "${{ github.event.inputs.plugin_name }}" \
           "${{ github.event.inputs.plugin_version }}"
+          sed -i 's/greenlet==3.4.0/greenlet==3.2.5/g' */requirements.txt    
 
       - name: Find repackaged artifact
         run: |
@@ -81,6 +82,4 @@ jobs:
           name: ${{ env.ARTIFACT_NAME }}
           path: ${{ env.ARTIFACT_PATH }}
 
-      - name: Patch requirements
-        run: |
-          sed -i 's/greenlet==3.4.0/greenlet==3.2.5/g' */requirements.txt    
+
