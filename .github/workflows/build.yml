@@ -52,9 +52,6 @@ jobs:
       - name: Make plugin_repackaging.sh executable
         run: chmod +x ./plugin_repackaging.sh
 
-      - name: Patch requirements
-        run: |
-          sed -i 's/greenlet==3.4.0/greenlet==3.2.5/g' */requirements.txt    
           
       - name: Run plugin repackaging script
         run: |        
@@ -83,3 +80,7 @@ jobs:
         with:
           name: ${{ env.ARTIFACT_NAME }}
           path: ${{ env.ARTIFACT_PATH }}
+
+      - name: Patch requirements
+        run: |
+          sed -i 's/greenlet==3.4.0/greenlet==3.2.5/g' */requirements.txt    
