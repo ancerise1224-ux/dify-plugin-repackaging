@@ -326,7 +326,7 @@ PY
 	
 	# Patch problematic dependencies
 	echo "Patching requirements.txt..."
-	sed -i 's/greenlet==3.4.0/greenlet==3.2.5/g' requirements.txt
+	sed -i 's/pandas~=3.4.0/pandas~=2.3.2/g' requirements.txt
 
 	# ============================================
 	# Step 3: Download Python dependencies as wheels
