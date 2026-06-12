@@ -357,6 +357,38 @@ PY
 	WHEEL_COUNT=$(ls -1 ./wheels/*.whl 2>/dev/null | wc -l)
 	echo "✓ Downloaded $WHEEL_COUNT wheel packages"
 
+	echo ""
+	echo "Patching pyproject.toml with local wheel sources..."
+	
+	patch_uv_sources() {
+	
+	    [ -f pyproject.toml ] || return 0
+	
+	    # 删除已有 [tool.uv.sources]
+	    sed -i '/^\[tool\.uv\.sources\]/,$d' pyproject.toml
+	
+	    echo "" >> pyproject.toml
+	    echo "[tool.uv.sources]" >> pyproject.toml
+	
+	    for whl in wheels/*.whl
+	    do
+	        base=$(basename "$whl")
+	
+	        # 从 wheel 文件名提取包名
+	        pkg=$(echo "$base" | sed -E 's/-[0-9].*$//')
+	
+	        # underscore 转 hyphen
+	        pkg=$(echo "$pkg" | tr '_' '-')
+	
+	        echo "$pkg = { path = \"$whl\" }" >> pyproject.toml
+	    done
+	
+	}
+	
+	patch_uv_sources
+	
+	echo "✓ pyproject.toml patched"
+
 	# ============================================
 	# Step 4: Update requirements.txt for offline usage
 	# ============================================
